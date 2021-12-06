@@ -1,0 +1,64 @@
+Informe sobre la ejecución y tiempos de los algoritmos
+
+Autores: Héctor Padín Torrente, Luis Cascón Padrón
+Logins: hector.padin@udc.es, luis.cascon@udc.es
+Grupo: 1.4
+
+
+
+En este informe se han implementado dos algoritmos, uno lineal(Suma SubMax 2) y otro cuadrático(Suma SubMax 1), que calculan la suma de la subsecuencia máxima. El resultado del algoritmo será cero si todos los elementos del vector son negativos.
+Para comprobar que los algoritmos funcinonan correctamente, se han chequeado una serie de secuencias predefinidas y otras generando vectores aleatorios.
+También se ha realizado una medición de los tiempos de ejecución con vectores aleatorios de tamaño n = 500 hasta n = 32000, siguiendo una progresión geométrica. Además se han analizado los resultados obtenidos realizando una comprobación empírica de la complejidad teórica.
+
+
+
+
+Todas las mediciones de tiempo se han realizado en microsegundos (1*10e-6 s).
+'N' sigue una progresión geométrica de razón 2, y va desde 500 hasta 64000, es decir se realizan 8 mediciones de tiempos.
+El programa ha sido compilado con el comando 'gcc p1.c -o p1 -lm -Wall' y ejecutado con './p1'.
+
+
+Suma SubMax 1
+       n            t(n)    t(n)/n^(1,8)      t(n)/n^(2)    t(n)/n^(2,2)
+*    500         245.143        0.003399        0.000981        0.000284
+    1000         968.000        0.003854        0.000968        0.000252
+    2000        3951.000        0.004667        0.000981        0.000213
+    4000       15762.000        0.005175        0.000987        0.000190
+    8000       61770.000        0.005814        0.000985        0.000164
+   16000      248528.000        0.006700        0.000972        0.000140
+   32000      992282.000        0.007707        0.000969        0.000122
+   64000     3967047.000        0.008860        0.000969        0.000106
+                             subestimada        ajustada    sobrestimada
+                             				Cte. = 0.000976
+                             				    (aprox.)
+
+(* A veces, en las primeras mediciones de tiempo para el algortimo da valores muy elevados para los primeros valores de n *)
+(* Se experimentó un error en Suma SubMax 1, cuando para n = 500 y el tiempo de ejecución es inferior a 500 microsegundos, no imprime el "*" por pantalla *)
+
+
+
+Suma SubMax 2
+       n            t(n)    t(n)/n^(0.7)    t(n)/n^(0.9)    t(n)/n^(1.1)
+*    500          1.4970        0.019436        0.005751        0.001797
+*   1000          2.7345        0.021170        0.005392        0.001382
+*   2000          4.9102        0.024206        0.004798        0.001177
+*   4000          8.9929        0.024936        0.005156        0.000949
+*   8000         15.2763        0.028324        0.005039        0.000774
+*  16000         31.1201        0.036054        0.004951        0.000727
+*  32000         60.0016        0.047251        0.005217        0.000654
+*  64000        119.6945        0.050882        0.005585        0.000609
+                             subestimada        ajustada    sobrestimada
+                             				Cte. = 0.005236
+                             					(aprox)
+
+* = El asterisco indica t(n) es un tiempo medio de ejecución para n.
+
+
+Después de estas mediciones, podemos concluír que el algoritmo para calcular la subsecuencia más eficiente es 'Suma SubMax 2'.
+
+*Todas las mediciones de tiempos de ejecución se han realizado sobre una computadora de uno de los alumnos.
+- Nombre: MSI GE63 Raider RGB 8RF
+- CPU: Intel Core i7-8750H.
+- GPU: NVIDIA GeForce GTX 1070 (8GB GDDR5).
+- RAM: 16 GB.
+- SO: Linux Mint 19.2 (este sistema se encuentra en una ssd externa de 256GB con una velocidad 			de transmisión de datos de 150MB/s).

@@ -1,0 +1,140 @@
+Informe sobre la ejecución y tiempos de algoritmos de ordenación
+
+Autores: Héctor Padín Torrente, Luis Cascón Padrón
+Logins: hector.padin@udc.es, luis.cascon@udc.es
+Grupo: 1.4
+
+
+
+En este programa se han implementado dos algoritmos de ordenación, uno por inserción y otro por ordenación shell, los cuales devuelven un vector ordenado.
+Para comprobar que los algoritmos funcionan correctamente, se han chequeado una serie de secuencias con el mejor caso(ya ordenado), el peor(ordenado a la inversa) y un caso generando un vector de números aleatorios.
+También se ha realizado una mediciones de los tiempos de ejecución con los vectores anteriores de tamaño n = 500 hasta n = 64000, siguiendo una progresión geométrica de orden dos. Además se han analizado los resultados obtenidos realizando una comprobación empírica de la complejidad teórica.
+
+
+Todas las mediciones de tiempos de ejecución se han realizado sobre una computadora de uno de los alumnos:
+- Nombre: MSI GE63 Raider RGB 8RF
+- CPU: Intel Core i7-8750H.
+- GPU: NVIDIA GeForce GTX 1070 (8GB GDDR5).
+- RAM: 16 GB.
+- SO: Linux Mint 19.2 (este sistema se encuentra en una ssd externa de 256GB con una velocidad 			de transmisión de datos de 150MB/s).
+
+
+Estas mediciones se han realizado en microsegundos (1*10e-6 s).
+'N' sigue una progresión geométrica de razón 2, y va desde 500 hasta 64000, es decir se realizan 8 mediciones de tiempos.
+El programa ha sido compilado con el entregado Makefile y su comando 'make' que primero hace un 'clean' y luego compila. El Makefile se ha entregado debido a que hay varios archivos necesarios para compilar nuestro programa, y así facilitamos su compilación.
+
+* = El asterisco indica que t(n) es un tiempo medio de ejecución para K = 10000 muestras de tiempo. Esto ocurre cuando el tiempo tomado es demasiado pequeño, el margen de error es demasiado grande.
+
+
+Tablas de tiempos:
+
+Ordenacion por insercion con inicializacion ascendente
+       n            t(n)    t(n)/n^(0,8)          t(n)/n    t(n)/n^(1,2)
+*    500           1.446        0.010028        0.002877        0.000835
+*   1000           2.865        0.011392        0.002862        0.000718
+*   2000           5.733        0.013040        0.002866        0.000632
+*   4000          11.410        0.014944        0.002859        0.000547
+*   8000          22.830        0.017302        0.002862        0.000473
+*  16000          46.232        0.020025        0.002891        0.000417
+*  32000          92.419        0.022985        0.002891        0.000363
+*  64000         184.864        0.026503        0.002892        0.000316
+
+- Cota Subestimada: n^(0,8)
+- Cota Ajustada: n 				Cte. = 0.002875
+- Cota Sobrestimada: n^(1,2)
+
+
+Ordenacion por insercion con inicializacion descendente
+       n            t(n)    t(n)/n^(1,8)      t(n)/n^(2)    t(n)/n^(2,2)
+*    500         264.444        0.003668        0.001060        0.000306
+    1000        1045.000        0.004156        0.001046        0.000262
+    2000        4338.000        0.004834        0.001071        0.000243
+    4000       16774.000        0.005590        0.001071        0.000205
+    8000       66982.000        0.006305        0.001046        0.000175
+   16000      270193.000        0.007318        0.001063        0.000153
+   32000     1080800.000        0.008428        0.001061        0.000133
+   64000     4334237.000        0.009692        0.001059        0.000115
+
+- Cota Subestimada: n^(1,8)
+- Cota Ajustada: n^(2)			Cte. = 0.001059
+- Cota Sobrestimada: n^(2,2)
+
+
+Ordenacion por insercion con inicializacion aleatoria
+       n            t(n)    t(n)/n^(1,8)      t(n)/n^(2)    t(n)/n^(2,2)
+*    500         135.786        0.001885        0.000544        0.000157
+    1000         543.000        0.002050        0.000529        0.000137
+    2000        2264.000        0.002383        0.000524        0.000115
+    4000        8431.000        0.002722        0.000536        0.000101
+    8000       33825.000        0.003208        0.000530        0.000088
+   16000      133450.000        0.003651        0.000530        0.000076
+   32000      544453.000        0.004253        0.000528        0.000067
+   64000     2177143.000        0.004850        0.000531        0.000058
+
+- Cota Subestimada: n^(1,8)
+- Cota Ajustada: n^(2)			Cte. = 0.000532
+- Cota Sobrestimada: n^(2,2)
+
+
+Ordenacion por shell con inicializacion ascendente
+       n            t(n)          t(n)/n   t(n)/n^(1,15)    t(n)/n^(1,3)
+*    500          14.312        0.029025        0.011452        0.004524
+*   1000          32.318        0.032267        0.011502        0.004133
+*   2000          72.773        0.036272        0.011532        0.003659
+*   4000         158.551        0.040221        0.011600        0.003356
+*   8000         350.364        0.043535        0.011339        0.002947
+   16000         755.000        0.047188        0.011046        0.002589
+   32000        1626.000        0.050781        0.010720        0.002259
+   64000        4053.000        0.071375        0.010312        0.001971
+
+
+
+- Cota Subestimada: n
+- Cota Ajustada: n^(1,15)			Cte. = 0.011188
+- Cota Sobrestimada: n^(1,3)
+
+
+Ordenacion por shell con inicializacion descendente
+       n            t(n)          t(n)/n   t(n)/n^(1,15)    t(n)/n^(1,3)
+*    500          19.666        0.039341        0.015533        0.006104
+*   1000          43.804        0.043915        0.015586        0.005523
+*   2000          96.973        0.048513        0.015507        0.004960
+*   4000         212.228        0.053082        0.015290        0.004410
+*   8000         462.588        0.057823        0.015040        0.003910
+   16000        1011.000        0.063125        0.014792        0.003456
+   32000        2215.000        0.070344        0.016225        0.003031
+   64000        4669.000        0.074641        0.015208        0.002637
+
+
+- Cota Subestimada: n
+- Cota Ajustada: n^(1,15)     Cte. = 0.015397
+- Cota Sobrestimada: n^(1,3)
+
+
+Ordenacion por shell con inicializacion aleatoria
+       n            t(n)          t(n)/n    t(n)/n^(1,2)    t(n)/n^(1,4)
+*    500          47.131        0.094549        0.027233        0.007879
+*   1000         110.035        0.109553        0.027574        0.006954
+*   2000         251.873        0.125391        0.027588        0.006015
+    4000         567.000        0.139750        0.027508        0.005173
+    8000        1291.000        0.158000        0.026868        0.004497
+   16000        2831.000        0.181562        0.026131        0.003780
+   32000        6589.000        0.204781        0.025531        0.003227
+   64000       14758.000        0.229828        0.025559        0.002825
+
+- Cota Subestimada: n
+- Cota Ajustada: n^(1,2)      Cte. = 0.026749
+- Cota Sobrestimada: n^(1,4)
+
+
+
+Conclusiones:
+
+Después de realizar las siguientes mediciones podemos concluír que para el mejor caso (un vector ya ordenado) es más eficiente la ordenación por inserción, pero para un vector que no esté ordenado es más eficiente el algoritmo de ordenacion shell.
+
+También hay que recalcar que el tiempo de ejecución para la ordenación shell es bastante más irregular que para la ordenación por inserción, y aún con el ordenador calentado, a veces salen resultados de tiempos anómalos.
+
+Para encontrar las cotas del algoritmo de ordenación shell se ha tardado más que para el de inserción debido a la irregularidad en los tiempos y el ajuste de cotas.
+
+No hay un algoritmo de ordenación mejor que el otro, la mejor elección dependerá de lo ordenados que estén los vectores. Para vectores que ya están ordenados, es mejor la ordenación por inserción, para vectores desordenados es mejor la ordenación shell.
+

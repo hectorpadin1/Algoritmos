@@ -1,0 +1,121 @@
+Informe sobre el tiempo de creación de montículos de mínimos y sus tiempos de ordenación para un vector.
+
+Autores: Héctor Padín Torrente, Luis Cascón Padrón
+Logins: hector.padin@udc.es, luis.cascon@udc.es
+Grupo: 1.4
+
+
+
+En este programa se ha implementado un procedimiento para la creación de montículos de mínimos y un algoritmo que mediante ordenación por montículos de mínimos, devuelve un vector ordenado.
+Para comprobar que los algoritmos funcionan correctamente, se han chequeado una serie de secuencias con un vector ascendiente, descendiente y otro con números aleatorios.
+También se ha realizado una mediciones de los tiempos de ejecución con los vectores anteriores de tamaño n = 500 hasta n = 64000, siguiendo una progresión geométrica de orden dos. Además se han analizado los resultados obtenidos realizando una comprobación empírica de la complejidad teórica.
+
+
+
+Todas las mediciones de tiempos de ejecución se han realizado sobre una computadora de uno de los alumnos:
+- Nombre: MSI GE63 Raider RGB 8RF
+- CPU: Intel Core i7-8750H.
+- GPU: NVIDIA GeForce GTX 1070 (8GB GDDR5).
+- RAM: 16 GB.
+- SO: Linux Mint 19.2 (este sistema se encuentra en una ssd externa de 256GB con una velocidad 			de transmisión de datos de 150MB/s).
+
+
+Estas mediciones se han realizado en microsegundos (1*10e-6 s).
+'N' sigue una progresión geométrica de razón 2, y va desde 500 hasta 64000, es decir se realizan 8 mediciones de tiempos.
+El programa ha sido compilado con el entregado Makefile y su comando 'make' que primero hace un 'clean' y luego compila. El Makefile se ha entregado debido a que hay varios archivos necesarios para compilar nuestro programa, y así facilitamos su compilación.
+
+* = El asterisco indica que t(n) es un tiempo medio de ejecución para K = 10000 muestras de tiempo. Esto ocurre cuando el tiempo tomado es demasiado pequeño, el margen de error es demasiado grande.
+
+
+Tablas de tiempos:
+
+Crear monticulos con inicializacion ascendente
+       n            t(n)    t(n)/n^(0,8)          t(n)/n    t(n)/n^(1,2)
+*    500           2.781        0.019276        0.005562        0.001605
+*   1000           5.398        0.021491        0.005398        0.001356
+*   2000          11.112        0.025409        0.005556        0.001215
+*   4000          21.634        0.028411        0.005409        0.001030
+*   8000          43.072        0.032488        0.005384        0.000892
+*  16000          86.156        0.037324        0.005385        0.000777
+*  32000         172.308        0.042873        0.005385        0.000676
+*  64000         345.391        0.049359        0.005397        0.000590
+
+
+Crear monticulos con inicializacion descendente
+       n            t(n)    t(n)/n^(0,8)          t(n)/n    t(n)/n^(1,2)
+*    500           5.009        0.034719        0.010018        0.002891
+*   1000           9.826        0.039119        0.009826        0.002468
+*   2000          19.623        0.044869        0.009812        0.002146
+*   4000          39.246        0.051541        0.009812        0.001868
+*   8000          78.240        0.059014        0.009780        0.001621
+*  16000         157.820        0.068370        0.009864        0.001423
+*  32000         315.892        0.078599        0.009872        0.001240
+   64000         641.000        0.091604        0.010016        0.001095
+
+- Cota Subestimada: n^(0,8)
+- Cota Ajustada: n 		      Cte. = 0.
+- Cota Sobrestimada: n^(1,2)
+
+
+Crear monticulos con inicializacion aleatoria
+       n            t(n)    t(n)/n^(0,8)          t(n)/n    t(n)/n^(1,2)
+*    500           7.934        0.054998        0.015869        0.004579
+*   1000          15.461        0.061551        0.015461        0.003884
+*   2000          30.440        0.069602        0.015220        0.003328
+*   4000          59.846        0.078593        0.014961        0.002848
+*   8000         118.323        0.089248        0.014790        0.002451
+*  16000         238.030        0.103118        0.014877        0.002146
+*  32000         473.952        0.117927        0.014811        0.001860
+   64000         955.000        0.136477        0.014922        0.001632
+
+- Cota Subestimada: n^(0,8)
+- Cota Ajustada: n 		      Cte. = 0.015114
+- Cota Sobrestimada: n^(1,2)
+
+
+Ordenacion por monticulos con inicializacion ascendente
+       n            t(n)          t(n)/n t(n)/(n*log(n))    t(n)/n^(1,5)
+*    500          31.281        0.062561        0.010067        0.002798
+*   1000          77.619        0.077619        0.011236        0.002455
+*   2000         179.556        0.089778        0.011811        0.002007
+*   4000         387.544        0.096886        0.011681        0.001532
+    8000         860.000        0.107500        0.011961        0.001202
+   16000        1760.000        0.110000        0.011363        0.000870
+   32000        3640.000        0.113750        0.010965        0.000636
+   64000        7856.000        0.122750        0.011092        0.000485
+
+
+Ordenacion por monticulos con inicializacion descendente
+       n            t(n)          t(n)/n t(n)/(n*log(n))    t(n)/n^(1,5)
+*    500          34.673        0.069346        0.011158        0.003101
+*   1000          82.210        0.082210        0.011901        0.002600
+*   2000         187.996        0.093998        0.012367        0.002102
+*   4000         403.548        0.100887        0.012164        0.001595
+    8000         882.000        0.110250        0.012267        0.001233
+   16000        1797.000        0.112312        0.011602        0.000888
+   32000        3670.000        0.114687        0.011056        0.000641
+   64000        7952.000        0.124250        0.011227        0.000491
+
+
+Ordenacion por monticulos con inicializacion aleatoria
+       n            t(n)          t(n)/n t(n)/(n*log(n))    t(n)/n^(1,5)
+*    500          47.670        0.095340        0.015341        0.004264
+*   1000         104.879        0.104879        0.015183        0.003317
+*   2000         227.051        0.113526        0.014936        0.002539
+    4000         525.000        0.131250        0.015825        0.002075
+    8000        1048.000        0.131000        0.014576        0.001465
+   16000        2233.000        0.139563        0.014417        0.001103
+   32000        4803.000        0.150094        0.014469        0.000839
+   64000       10640.000        0.166250        0.015023        0.000657
+
+
+
+Conclusiones:
+
+En las tres primeras tablas, queda demostrado empíricamente que la creación por montículos se realiza en O(n) para cualquiera de los tres vectores anteriores.
+La ordenación por montículos, tablas 4 a 6, se realiza en O(n*log(n)) dado que crear un montículo se realiza en O(n) y eliminar montítuclo en O(log(n)).
+
+
+
+
+

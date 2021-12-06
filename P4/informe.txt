@@ -1,0 +1,70 @@
+Informe sobre el tiempo del cálculo de los caminos mínimos de cada vértice de grafos completos
+aleatorios no dirigidos, además de calcular su complejidad computacional.
+
+Autores: Héctor Padín Torrente, Luis Cascón Padrón
+Logins: hector.padin@udc.es, luis.cascon@udc.es
+Grupo: 1.4
+
+
+
+En este programa se ha implementado un procedimiento para el cálculo de las distancias mínimas de
+un grafo completo no dirigido desde cada vértice hacia los restantes. El resultado de la ejecución
+de este algoritmo es una tabla de distancias mínimas desde cada nodo al resto.
+
+Para comprobar que los algoritmos funcionan correctamente, se han chequeado los ejemplos de las
+figuras 2 y 3 de la práctica comprobando sus tablas de distancias mínimas.
+
+También se ha realizado una mediciones de los tiempos de ejecución con las matrices cuadráticas
+tamaño n = 10 hasta n = 640, siguiendo una progresión geométrica de orden dos. Además se han
+analizado los resultados obtenidos realizando una comprobación empírica de la complejidad teórica.
+
+
+
+Todas las mediciones de tiempos de ejecución se han realizado sobre una computadora de uno de los
+alumnos:
+- Nombre: MSI GE63 Raider RGB 8RF
+- CPU: Intel Core i7-8750H.
+- GPU: NVIDIA GeForce GTX 1070 (8GB GDDR5).
+- RAM: 16 GB.
+- SO: Linux Mint 19.2 (este sistema se encuentra en una ssd externa de 256GB con una velocidad
+      de transmisión de datos de 150MB/s).
+
+
+Estas mediciones se han realizado en microsegundos (1*10e-6 s).
+'N' sigue una progresión geométrica de razón 2, y va desde 10 hasta 640, es decir se realizan 7
+mediciones de tiempos.
+El programa ha sido compilado con el entregado Makefile y su comando 'make' que primero hace un
+'clean' y luego compila. El Makefile se ha entregado debido a que hay varios archivos necesarios
+para compilar nuestro programa, y así facilitamos su compilación.
+
+* = El asterisco indica que t(n) es un tiempo medio de ejecución para K = 1000 muestras de
+tiempo. Esto ocurre cuando el tiempo tomado es demasiado pequeño, el margen de error es
+demasiado grande.
+
+
+
+Tabla de tiempos:
+
+Cálculo de las distancias mínimas para un grafo aleatorio
+       n            t(n)        t(n^2,6)        t(n^2,8)          t(n^3)
+*     10          10.013        0.025152        0.015870        0.010013
+*     20          67.906        0.028134        0.015453        0.008488
+      40         506.000        0.034578        0.016534        0.007906
+      80        3266.000        0.036811        0.015324        0.006379
+     160       23253.000        0.043228        0.015665        0.005677
+     320      162075.000        0.049697        0.015678        0.004946
+     640     1215064.000        0.061451        0.016877        0.004635
+
+
+- Cota Subestimada: n^(2,6)
+- Cota Ajustada: n^(2,8)	      Cte. = 0.015914
+- Cota Sobrestimada: n^(3)
+
+
+
+Conclusiones:
+
+En la tabla, queda demostrado empíricamente que el cálculo de las distancias mínimas
+para un grafo aleatorio completo no dirigido se realiza en O(n^(2,8)).
+Aunque sin embargo la complejidad teórica del algortimo es O(n^3).
+
